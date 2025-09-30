@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Salon - Book Your Appointment</title>
+    <title>Zelli Salon - Book Beauty Services</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#667eea">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Glamour Salon</div>
+            <div class="logo">
+                <span class="logo-icon">💇‍♀️</span>
+                Zelli Salon
+            </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
+                <a href="#salons">Salons</a>
                 <a href="#services">Services</a>
                 <a href="#booking">Book Now</a>
-                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
@@ -25,96 +26,491 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Your Beauty, Our Passion</h1>
-            <p>Book your perfect salon experience in seconds</p>
-            <button class="cta-button" onclick="scrollToBooking()">Book Appointment</button>
+            <h1>Discover Your Perfect Salon Experience</h1>
+            <p>Book appointments at the best salons in your area through Zelli Marketplace</p>
+            <button class="cta-button" onclick="scrollToBooking()">Find Salons Near You</button>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Services</h2>
+    <div class="container">
+        <!-- Salon Selection -->
+        <div class="section">
+            <h2>🏪 Select Your Preferred Salon</h2>
+            <select id="salon-select" class="salon-select">
+                <option value="">Choose a salon from our marketplace...</option>
+                <option value="salon-1">Zelli Salon Downtown 💫</option>
+                <option value="salon-2">Zelli Beauty Spa 🌸</option>
+                <option value="salon-3">Zelli Hair Studio ✂️</option>
+                <option value="salon-4">Zelli Luxury Nails 💅</option>
+                <option value="salon-5">Zelli Men's Grooming 🧔</option>
+            </select>
+            <div id="salon-info" class="salon-info" style="display: none;">
+                <div class="salon-details">
+                    <h3 id="salon-name"></h3>
+                    <p id="salon-address" class="salon-address"></p>
+                    <p id="salon-hours" class="salon-hours"></p>
+                    <div class="salon-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">4.8 (124 reviews)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Selection -->
+        <div class="section">
+            <h2>💅 Select Services</h2>
             <div class="services-grid">
-                <div class="service-card">
-                    <h3>Hair Styling</h3>
-                    <p>From cuts to coloring</p>
-                    <span class="price">$45+</span>
+                <div class="service-item">
+                    <input type="checkbox" id="haircut" class="service-checkbox" value="haircut" data-name="Women's Haircut" data-duration="60" data-price="45">
+                    <label for="haircut">
+                        <span class="service-name">Women's Haircut</span>
+                        <span class="service-duration">60 min</span>
+                        <span class="service-price">$45</span>
+                    </label>
                 </div>
-                <div class="service-card">
-                    <h3>Manicure & Pedicure</h3>
-                    <p>Professional nail care</p>
-                    <span class="price">$35+</span>
+                <div class="service-item">
+                    <input type="checkbox" id="manicure" class="service-checkbox" value="manicure" data-name="Luxury Manicure" data-duration="45" data-price="35">
+                    <label for="manicure">
+                        <span class="service-name">Luxury Manicure</span>
+                        <span class="service-duration">45 min</span>
+                        <span class="service-price">$35</span>
+                    </label>
                 </div>
-                <div class="service-card">
-                    <h3>Skincare</h3>
-                    <p>Facials and treatments</p>
-                    <span class="price">$60+</span>
+                <div class="service-item">
+                    <input type="checkbox" id="facial" class="service-checkbox" value="facial" data-name="Signature Facial" data-duration="90" data-price="60">
+                    <label for="facial">
+                        <span class="service-name">Signature Facial</span>
+                        <span class="service-duration">90 min</span>
+                        <span class="service-price">$60</span>
+                    </label>
                 </div>
-                <div class="service-card">
-                    <h3>Makeup</h3>
-                    <p>Special occasion makeup</p>
-                    <span class="price">$55+</span>
+                <div class="service-item">
+                    <input type="checkbox" id="hair-color" class="service-checkbox" value="hair-color" data-name="Hair Coloring" data-duration="120" data-price="85">
+                    <label for="hair-color">
+                        <span class="service-name">Hair Coloring</span>
+                        <span class="service-duration">120 min</span>
+                        <span class="service-price">$85</span>
+                    </label>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="massage" class="service-checkbox" value="massage" data-name="Spa Massage" data-duration="60" data-price="70">
+                    <label for="massage">
+                        <span class="service-name">Spa Massage</span>
+                        <span class="service-duration">60 min</span>
+                        <span class="service-price">$70</span>
+                    </label>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Booking Section -->
-    <section id="booking" class="booking">
-        <div class="container">
-            <h2>Book Your Appointment</h2>
-            <div class="booking-form">
-                <div class="form-group">
-                    <label for="service">Select Service:</label>
-                    <select id="service">
-                        <option value="hair">Hair Styling</option>
-                        <option value="nails">Manicure & Pedicure</option>
-                        <option value="skin">Skincare</option>
-                        <option value="makeup">Makeup</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="date">Select Date:</label>
-                    <input type="date" id="date">
-                </div>
-                <div class="form-group">
-                    <label for="time">Select Time:</label>
-                    <select id="time">
-                        <option value="9:00">9:00 AM</option>
-                        <option value="10:00">10:00 AM</option>
-                        <option value="11:00">11:00 AM</option>
-                        <option value="14:00">2:00 PM</option>
-                        <option value="15:00">3:00 PM</option>
-                        <option value="16:00">4:00 PM</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" placeholder="Enter your phone">
-                </div>
-                <button class="submit-btn" onclick="bookAppointment()">Book Now</button>
+            <!-- Selected Services Summary -->
+            <div id="selected-services" class="selected-services" style="display: none;">
+                <h4>Your Selection:</h4>
+                <div id="services-list"></div>
+                <div id="services-total" class="services-total"></div>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p>📞 (555) 123-4567</p>
-                <p>📧 hello@glamoursalon.com</p>
-                <p>📍 123 Beauty Street, Your City</p>
-                <p>🕒 Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
+        <!-- Date Selection -->
+        <div class="section">
+            <h2>📅 Select Date</h2>
+            <input type="date" id="booking-date" class="date-input" min="">
+        </div>
+
+        <!-- Available Slots -->
+        <div class="section">
+            <h2>🕒 Available Time Slots</h2>
+            <div id="available-slots" class="slots-container">
+                <p class="no-slots">Please select a salon, services, and date to see available slots</p>
             </div>
         </div>
-    </section>
 
-    <script src="script.js"></script>
+        <!-- Status Messages -->
+        <div id="status-message" class="status-message"></div>
+
+        <!-- Booking Summary -->
+        <div id="booking-summary" class="booking-summary" style="display: none;">
+            <h3>Booking Summary</h3>
+            <div id="summary-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Zelli Salon Marketplace Configuration
+        const CONFIG = {
+            BOOK_MULTI_SLOTS_URL: "YOUR_ACTUAL_BOOK_MULTI_SLOTS_URL_HERE", // ← REPLACE WITH YOUR EDGE FUNCTION URL
+            RESERVATION_TIMEOUT: 300 // 5 minutes
+        };
+
+        // Salon database - In real app, this comes from your API
+        const SALONS = {
+            'salon-1': {
+                name: 'Zelli Salon Downtown',
+                address: '123 Main Street, Downtown',
+                hours: 'Mon-Sat: 9AM-8PM, Sun: 10AM-6PM',
+                rating: '4.8 (124 reviews)'
+            },
+            'salon-2': {
+                name: 'Zelli Beauty Spa',
+                address: '456 Beauty Ave, Uptown',
+                hours: 'Tue-Sun: 8AM-9PM, Mon: Closed',
+                rating: '4.9 (89 reviews)'
+            },
+            'salon-3': {
+                name: 'Zelli Hair Studio',
+                address: '789 Style Blvd, Fashion District',
+                hours: 'Mon-Fri: 10AM-7PM, Sat-Sun: 9AM-5PM',
+                rating: '4.7 (156 reviews)'
+            },
+            'salon-4': {
+                name: 'Zelli Luxury Nails',
+                address: '321 Nail Street, Beauty Plaza',
+                hours: 'Daily: 9AM-8PM',
+                rating: '4.6 (203 reviews)'
+            },
+            'salon-5': {
+                name: 'Zelli Men\'s Grooming',
+                address: '654 Barber Road, Business District',
+                hours: 'Mon-Sat: 8AM-7PM, Sun: 10AM-4PM',
+                rating: '4.8 (167 reviews)'
+            }
+        };
+
+        class ZelliBookingApp {
+            constructor() {
+                this.selectedServices = [];
+                this.selectedSalonId = null;
+                this.currentReservation = null;
+                this.init();
+            }
+
+            init() {
+                console.log("✅ Zelli Salon Marketplace initialized!");
+                this.setMinDate();
+                this.attachEventListeners();
+                this.showStatus("Welcome to Zelli Salon Marketplace! Choose a salon to get started.", "info");
+            }
+
+            setMinDate() {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('booking-date').min = today;
+            }
+
+            attachEventListeners() {
+                // Salon selection
+                document.getElementById('salon-select').addEventListener('change', (e) => {
+                    this.handleSalonSelection(e.target.value);
+                });
+
+                // Service selection
+                document.querySelectorAll('.service-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        this.handleServiceChange(e.target);
+                    });
+                });
+
+                // Date selection
+                document.getElementById('booking-date').addEventListener('change', (e) => {
+                    this.handleDateChange(e.target.value);
+                });
+            }
+
+            handleSalonSelection(salonId) {
+                this.selectedSalonId = salonId;
+                const salonInfo = document.getElementById('salon-info');
+                
+                if (salonId && SALONS[salonId]) {
+                    const salon = SALONS[salonId];
+                    salonInfo.style.display = 'block';
+                    document.getElementById('salon-name').textContent = salon.name;
+                    document.getElementById('salon-address').textContent = `📍 ${salon.address}`;
+                    document.getElementById('salon-hours').textContent = `🕒 ${salon.hours}`;
+                    document.getElementById('salon-rating').innerHTML = `
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">${salon.rating}</span>
+                    `;
+                    
+                    this.showStatus(`Selected: ${salon.name}`, "success");
+                    this.checkIfReadyToLoadSlots();
+                } else {
+                    salonInfo.style.display = 'none';
+                    this.showStatus("Please select a salon", "info");
+                    this.hideSlots();
+                }
+            }
+
+            handleServiceChange(checkbox) {
+                const service = {
+                    id: checkbox.value,
+                    name: checkbox.dataset.name,
+                    duration: parseInt(checkbox.dataset.duration),
+                    price: parseFloat(checkbox.dataset.price)
+                };
+
+                if (checkbox.checked) {
+                    this.selectedServices.push(service);
+                } else {
+                    this.selectedServices = this.selectedServices.filter(s => s.id !== service.id);
+                }
+
+                this.updateSelectedServicesDisplay();
+                this.checkIfReadyToLoadSlots();
+            }
+
+            updateSelectedServicesDisplay() {
+                const selectedContainer = document.getElementById('selected-services');
+                const servicesList = document.getElementById('services-list');
+                const totalElement = document.getElementById('services-total');
+
+                if (this.selectedServices.length > 0) {
+                    selectedContainer.style.display = 'block';
+                    
+                    servicesList.innerHTML = this.selectedServices.map(service => `
+                        <div class="selected-service-item">
+                            <span>${service.name}</span>
+                            <span>${service.duration}min - $${service.price}</span>
+                        </div>
+                    `).join('');
+
+                    const totalDuration = this.selectedServices.reduce((sum, s) => sum + s.duration, 0);
+                    const totalPrice = this.selectedServices.reduce((sum, s) => sum + s.price, 0);
+                    
+                    totalElement.innerHTML = `
+                        <div class="total-line">
+                            <strong>Total: ${totalDuration} minutes - $${totalPrice}</strong>
+                        </div>
+                    `;
+                } else {
+                    selectedContainer.style.display = 'none';
+                }
+            }
+
+            handleDateChange(date) {
+                if (date) {
+                    this.showStatus(`Date selected: ${new Date(date).toLocaleDateString()}`, "success");
+                    this.checkIfReadyToLoadSlots();
+                }
+            }
+
+            checkIfReadyToLoadSlots() {
+                const date = document.getElementById('booking-date').value;
+                if (date && this.selectedServices.length > 0 && this.selectedSalonId) {
+                    this.showStatus("Ready to check availability!", "success");
+                    this.loadAvailableSlots();
+                } else {
+                    this.hideSlots();
+                }
+            }
+
+            hideSlots() {
+                const slotsContainer = document.getElementById('available-slots');
+                slotsContainer.innerHTML = '<p class="no-slots">Please select a salon, services, and date to see available slots</p>';
+            }
+
+            async loadAvailableSlots() {
+                if (!this.selectedSalonId) {
+                    this.showStatus("Please select a salon first", "error");
+                    return;
+                }
+
+                const date = document.getElementById('booking-date').value;
+                if (!date || this.selectedServices.length === 0) return;
+
+                const salonName = this.getSalonName();
+                this.showStatus(`Checking availability at ${salonName}...`, "info");
+
+                try {
+                    // In real app, this would call your edge function with mode: "view"
+                    // For demo, we'll show sample slots
+                    this.showDemoSlots();
+                    
+                } catch (error) {
+                    this.showStatus("Error loading slots: " + error.message, "error");
+                }
+            }
+
+            getSalonName() {
+                const select = document.getElementById('salon-select');
+                return select.selectedOptions[0]?.text.split(' 💫')[0].split(' 🌸')[0].split(' ✂️')[0].split(' 💅')[0].split(' 🧔')[0] || 'Selected Salon';
+            }
+
+            showDemoSlots() {
+                const slotsContainer = document.getElementById('available-slots');
+                const salonName = this.getSalonName();
+                const totalDuration = this.selectedServices.reduce((sum, s) => sum + s.duration, 0);
+                
+                slotsContainer.innerHTML = `
+                    <div class="salon-header">
+                        <h4>🏪 ${salonName}</h4>
+                        <p>Available slots for ${totalDuration} minute service</p>
+                    </div>
+                `;
+                
+                const demoSlots = [
+                    { start: "09:00", end: this.addMinutes("09:00", totalDuration), can_book: true, status: "available" },
+                    { start: "10:30", end: this.addMinutes("10:30", totalDuration), can_book: true, status: "available" },
+                    { start: "11:45", end: this.addMinutes("11:45", totalDuration), can_book: true, status: "available" },
+                    { start: "14:00", end: this.addMinutes("14:00", totalDuration), can_book: false, status: "booked" },
+                    { start: "15:15", end: this.addMinutes("15:15", totalDuration), can_book: true, status: "available" },
+                    { start: "16:30", end: this.addMinutes("16:30", totalDuration), can_book: true, status: "available" }
+                ];
+
+                demoSlots.forEach(slot => {
+                    const slotElement = document.createElement('div');
+                    slotElement.className = `slot ${slot.can_book ? 'available' : 'unavailable'}`;
+                    slotElement.innerHTML = `
+                        <div class="slot-info">
+                            <div class="slot-time">${slot.start} - ${slot.end}</div>
+                            <div class="slot-duration">${totalDuration} min</div>
+                        </div>
+                        <div class="slot-status">${slot.status}</div>
+                        ${slot.can_book ? 
+                            `<button class="book-btn" onclick="app.startBookingProcess('${slot.start}')">
+                                Reserve Slot
+                            </button>` : 
+                            '<button class="book-btn disabled" disabled>Unavailable</button>'
+                        }
+                    `;
+                    slotsContainer.appendChild(slotElement);
+                });
+
+                this.showStatus(`Found ${demoSlots.filter(s => s.can_book).length} available slots at ${salonName}`, "success");
+            }
+
+            addMinutes(time, minutes) {
+                const [hours, mins] = time.split(':').map(Number);
+                const totalMinutes = hours * 60 + mins + minutes;
+                const endHours = Math.floor(totalMinutes / 60);
+                const endMins = totalMinutes % 60;
+                return `${String(endHours).padStart(2, '0')}:${String(endMins).padStart(2, '0')}`;
+            }
+
+            async startBookingProcess(slotStart) {
+                if (!this.selectedSalonId) {
+                    this.showStatus("Please select a salon first", "error");
+                    return;
+                }
+
+                const salonName = this.getSalonName();
+                const totalDuration = this.selectedServices.reduce((sum, s) => sum + s.duration, 0);
+                const totalPrice = this.selectedServices.reduce((sum, s) => sum + s.price, 0);
+                const slotStartMin = this.timeToMinutes(slotStart);
+
+                this.showStatus(`Starting booking process at ${salonName}...`, "info");
+
+                // Show booking summary
+                this.showBookingSummary(salonName, slotStart, totalDuration, totalPrice);
+
+                // Demo of the 3-step booking process
+                console.log("🚀 ZELLI MARKETPLACE BOOKING PROCESS:");
+                
+                console.log("STEP 1 - Check Availability (mode: 'view'):", {
+                    mode: "view",
+                    salon_id: this.selectedSalonId,
+                    date: document.getElementById('booking-date').value,
+                    services: this.selectedServices
+                });
+
+                console.log("STEP 2 - Reserve Slot (mode: 'reserve'):", {
+                    mode: "reserve",
+                    salon_id: this.selectedSalonId,
+                    date: document.getElementById('booking-date').value,
+                    slot_start_min: slotStartMin,
+                    services: this.selectedServices
+                });
+
+                console.log("STEP 3 - Confirm Booking (mode: 'book'):", {
+                    mode: "book",
+                    salon_id: this.selectedSalonId,
+                    date: document.getElementById('booking-date').value,
+                    slot_start_min: slotStartMin,
+                    services: this.selectedServices,
+                    reservation_id: "FROM_RESERVATION_STEP"
+                });
+
+                this.showStatus(`DEMO: Complete booking flow ready for ${salonName}!`, "success");
+            }
+
+            showBookingSummary(salonName, slotStart, duration, totalPrice) {
+                const summary = document.getElementById('booking-summary');
+                const content = document.getElementById('summary-content');
+                
+                content.innerHTML = `
+                    <div class="summary-item">
+                        <strong>Salon:</strong> ${salonName}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Date:</strong> ${document.getElementById('booking-date').value}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Time:</strong> ${slotStart} (${duration} minutes)
+                    </div>
+                    <div class="summary-item">
+                        <strong>Services:</strong> 
+                        ${this.selectedServices.map(s => s.name).join(', ')}
+                    </div>
+                    <div class="summary-item total">
+                        <strong>Total Amount:</strong> $${totalPrice}
+                    </div>
+                    <div class="booking-actions">
+                        <button class="confirm-btn" onclick="app.demoCompleteBooking()">
+                            Complete Booking
+                        </button>
+                        <button class="cancel-btn" onclick="app.hideBookingSummary()">
+                            Cancel
+                        </button>
+                    </div>
+                `;
+                
+                summary.style.display = 'block';
+                summary.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            hideBookingSummary() {
+                document.getElementById('booking-summary').style.display = 'none';
+            }
+
+            demoCompleteBooking() {
+                const salonName = this.getSalonName();
+                this.showStatus(`🎉 Booking confirmed at ${salonName}! You will receive a confirmation shortly.`, "success");
+                this.hideBookingSummary();
+                
+                // Reset form after successful booking
+                setTimeout(() => {
+                    this.selectedServices = [];
+                    this.selectedSalonId = null;
+                    document.getElementById('salon-select').value = '';
+                    document.getElementById('booking-date').value = '';
+                    document.querySelectorAll('.service-checkbox').forEach(cb => cb.checked = false);
+                    document.getElementById('salon-info').style.display = 'none';
+                    document.getElementById('selected-services').style.display = 'none';
+                    this.hideSlots();
+                    this.showStatus("Ready for your next booking! 🎉", "info");
+                }, 3000);
+            }
+
+            timeToMinutes(timeStr) {
+                const [hours, minutes] = timeStr.split(':').map(Number);
+                return hours * 60 + minutes;
+            }
+
+            showStatus(message, type = "info") {
+                const statusEl = document.getElementById('status-message');
+                statusEl.textContent = message;
+                statusEl.className = `status-message ${type}`;
+                console.log(`[${type.toUpperCase()}] ${message}`);
+            }
+        }
+
+        // Utility function for smooth scrolling
+        function scrollToBooking() {
+            document.querySelector('.container').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Initialize Zelli Salon Marketplace
+        const app = new ZelliBookingApp();
+    </script>
 </body>
 </html>
